@@ -90,14 +90,9 @@ const updateProfile = async(req, res) => {
 }
 
 const addNewDetails = async(req, res) => {
-    const {email, aadaar, address, fname, fphone} = req.body;
+    const {email, studentdata} = req.body;
     try {
-        await studentModel.findOneAndUpdate({email: email}, {details:{
-            aadaar: aadaar,
-            address: address,
-            fname: fname,
-            fphone: fphone
-        }}).then(() => {
+        await studentModel.findOneAndUpdate({email: email}, {details:studentdata}).then(() => {
             res.status(200).json({"msg":"updated successfully"});
         })
     } catch (error) {
